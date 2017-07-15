@@ -1,0 +1,64 @@
+{
+  "error_code": 0,
+  "reason": "Success!",
+  "result": {
+    "GetRankTypeRsp": {
+      "RankList": {
+        "Rank": [
+          {
+            "rankTypeID": "1",
+            "rankName": "点击排行"
+          },
+          {
+            "rankTypeID": "2",
+            "rankName": "搜索排行"
+          },
+          {
+            "rankTypeID": "3",
+            "rankName": "收藏排行"
+          },
+          {
+            "rankTypeID": "4",
+            "rankName": "人气排行"
+          }
+        ]
+      },
+      "RankTimeList": {
+        "RankTime": [
+          {
+            "rankTimeID": "1",
+            "rankTimeName": "日排行"
+          },
+          {
+            "rankTimeID": "2",
+            "rankTimeName": "周排行"
+          },
+          {
+            "rankTimeID": "3",
+            "rankTimeName": "月排行"
+          },
+          {
+            "rankTimeID": "4",
+            "rankTimeName": "总排行"
+          }
+        ]
+      },
+      "ContentTypeList": {
+        "ContentType": [
+          {
+            "contentTypeID": "1",
+            "contentType": "图书"
+          },
+          {
+            "contentTypeID": "2",
+            "contentType": "杂志"
+          },
+          {
+            "contentTypeID": "3",
+            "contentType": "漫画"
+          }
+        ]
+      }
+    }
+  }
+}
