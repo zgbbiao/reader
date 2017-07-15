@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-header  :headerObj=headerObj ></v-header>
+    <v-header :headerObj="headerObj" @onPopup="onCookie" :toChildCookie="toChildCookie">
+    </v-header>
     <swipe></swipe>
     <search></search>
     <div class="book-nav-box">
@@ -18,8 +19,25 @@
       <img src="//qidian.qpic.cn/qidian_common/349573/1366cef51c6193f45f45beb3d219d3a6/0" class="home-pure-ad-img" alt="广告">
     </div>
     <hotBook :BList=allList ></hotBook>
-
-
+    <div class="PopupLogin" >
+      <mt-popup
+        v-model="popupVisible">
+        <form class="mui-input-group">
+          <div class="mui-input-row">
+            <label>用户名</label>
+            <input type="text" class="mui-input-clear userName" placeholder="请输入用户名">
+          </div>
+          <div class="mui-input-row">
+            <label>密码</label>
+            <input type="password" class="mui-input-password userpassword" placeholder="请输入密码">
+          </div>
+          <div class="mui-button-row">
+            <button type="button" class="mui-btn mui-btn-primary " @click="userLogin" >确认</button>
+            <button type="button" class="mui-btn mui-btn-danger " >取消</button>
+          </div>
+        </form>
+      </mt-popup>
+    </div>
   </div>
 </template>
 <script>
@@ -28,7 +46,7 @@
   import Search from "@/components/search.vue"
   import hotBook from "@/components/hotBook.vue"
   import axios from 'axios'
-
+  import Cookie from "@/components/myCookie.js";
   export default{
     data(){
       return {
@@ -60,7 +78,10 @@
         headerObj: {
           title: "小说坊",
           back: "首页"
-        }
+        },
+        isCookie:false,
+        popupVisible:false,
+        toChildCookie:false
       };
     },
     created(){
@@ -85,7 +106,24 @@
               ]
           }
         })
+      },
+      //给子组件注册事件;
+      onCookie( isCookie ){
+          this.isCookie=isCookie;
+          this.popupVisible=!isCookie;
+      },
+      //点击用户输入登录;
+      userLogin(){
+        var userName=document.querySelector(".userName").value;
+        var userpwd=document.querySelector(".userpassword").value;
+        console.log(userName+"="+userpwd  )
+        Cookie.set( "myBook", userName+"="+userpwd );
+        console.log( Cookie.get( "myBook" ) )
+        this.isCookie=true;
+        this.popupVisible=false;
+        this.toChildCookie=true;
       }
+
     },
     components:{
       "v-header":header,
@@ -155,4 +193,8 @@
     width: 100%;
     height:160px;
   }
+
+
+
+
 </style>

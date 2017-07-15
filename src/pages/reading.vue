@@ -6,10 +6,10 @@
     <div class="content" v-html="bookList.content">
     </div>
     <div class="reading-bottom">
-      <router-link  :to="{ path: 'reading', query: {book: this.$route.query.book , id:subtractId }}">
+      <router-link  :to="{ name: 'Reading', params: {book: this.$route.params.book , id:subtractId }}">
         上一页
       </router-link>
-      <router-link  :to="{ path: 'reading', query: {book: this.$route.query.book , id:addId }  }">
+      <router-link  :to="{ name: 'Reading', params: {book: this.$route.params.book , id:addId }  }">
         下一页
       </router-link>
     </div>
@@ -31,12 +31,12 @@
           }
       },
     created(){
-          this.getbookList();
+          this.getbookList( this.$route.params.id );
           this.setBookId();
     },
       methods:{
-        getbookList:function(){
-          axios.get(`${this.common.api}/book?book=${this.$route.query.book}&id=${this.$route.query.id}`).then( res => {
+        getbookList:function( id ){
+          axios.get(`${this.common.api}/book?book=${this.$route.params.book}&id=${id}`).then( res => {
             if( res.status == 200 ){
               this.bookList=res.data;
 //              console.log( this.bookList )
@@ -49,14 +49,21 @@
           })
         },
         setBookId(){
-          this.addId = this.subtractId = parseInt( this.$route.query.id );
-          this.subtractId = this.subtractId>=1 ? this.subtractId : 0;
+          this.addId = this.subtractId = parseInt( this.$route.params.id );
+          this.subtractId = this.subtractId>=2 ? this.subtractId-1 : 1;
           this.addId++;
-        },
+        }
       },
     components:{
       "v-header":Header
     },
+    watch: {
+      //监听路由，点击底部喜欢的书籍路由会改变，重新获取数据
+      $route(to, from) {
+        this.getbookList(to.params.id);
+        this.setBookId();
+      },
+    }
 
   }
 </script>

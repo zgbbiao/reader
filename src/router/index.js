@@ -5,9 +5,8 @@ import home from "@/pages/home.vue";
 import category from "@/pages/category.vue";
 import Details from "@/pages/Details.vue";
 import Reading from "@/pages/reading.vue";
-// import pageQuiButton from "../pages/pageQuiButton.vue"
-// import pageQuilList from "../pages/pageQuilList.vue"
-// import pageQuiNav from "../pages/pageQuiNav.vue"
+import Reader from "@/pages/reader.vue";
+
 
 Vue.use(Router)
 
@@ -29,15 +28,21 @@ export default new Router({
       component: category
     },
     {
-      path: '/details/',
+      path: '/details/:id',
       name: 'Details',
       component: Details
     },
     {
-      path: '/reading',
+      path: '/reading/:id',
       name: 'Reading',
       component: Reading
+    },
+    {
+      path: '/reader',
+      name: 'Reader',
+      component: Reader
     }
+
 
 
   ]

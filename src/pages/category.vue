@@ -18,7 +18,7 @@
         </a>
     </div>
 
-    <router-link :to="{path:'details', query:{id:item.id} }" class="categoryInfo"  v-for=" ( item, index ) in bookList " :key="item.id" >
+    <router-link :to="{name:'Details', params:{id:item.id} }" class="categoryInfo"  v-for=" ( item, index ) in bookList " :key="item.id" >
       <img :src="item.images" :alt="item.images">
       <div class="right">
         <h3>{{item.name}}</h3>

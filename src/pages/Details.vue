@@ -1,6 +1,9 @@
 <template>
   <div>
-    <v-header :headerObj=headerObj ></v-header>
+    <v-header :headerObj=headerObj >
+    </v-header>
+    <span class="badge">{{badge}}</span>
+    <!--书的详情-->
       <div class="bookDetails">
         <img :src="details.images" alt="">
         <div class="book-right">
@@ -12,23 +15,27 @@
       </div>
     <div class="btn-box">
       <button type="button" class="mui-btn mui-btn-danger ">
-        <router-link class="to-reading" :to="{path:'reading',query: {book: details.id , id:1 }} "></router-link>立刻阅读
+        <!--:to="{ name: 'Reading', params: { id: ite.id }}-->
+        <router-link class="to-reading" :to="{name:'Reading', params: {book: details.id , id:1 }} "></router-link>立刻阅读
       </button>
-      <button type="button" class="mui-btn">加入书架</button>
+      <button type="button" class="mui-btn addBookrack" @click="addBookrack">加入书架</button>
     </div>
     <div class="intro">
       {{ details.intro }}
     </div>
+    <!--书的详情end-->
+
+    <!--推荐书-->
     <div class="other">
       <p> 书友还看过 </p>
       <div class="bottom">
-        <router-link v-for=" ( ite, index ) in bookList " :to="{path:'details', query:{id:ite.id} }">
+        <router-link v-for=" ( ite, index ) in bookList " :to="{name:'Details', params:{id:ite.id} }">
           <img v-bind:src="ite.images" :alt="ite.images">
           <p class="fs-bold">{{ite.name}}</p>
           <p>{{ite.author}}</p>
         </router-link>
       </div>
-
+      <!--推荐书end-->
 
     </div>
   </div>
@@ -37,7 +44,12 @@
 <script>
   import axios from 'axios'
   import Header from "@/components/header.vue"
+  import { setVal, getAllBookNum, getVal } from "@/components/getBook.js"
+  import $ from "@/lib/jquery-2.2.2.min.js"
+  import "@/lib/jquery.fly.min.js"
+  import "@/lib/requestAnimationFrame.js"
 
+  //使用store 共享数据;
   var store = {
     debug: true,
     state: {
@@ -47,29 +59,34 @@
   export default{
     data(){
       return {
+          //小说详情数据
         details: {},
         headerObj: {
           title: "小说详情",
           back: "返回"
         },
+        //作者等级的状态(如:大神)
         authorStatus:store.state.authorStatus,
-        bookList:[]
+        bookList:[],
+        //书架数量;
+        badge:0
       }
     },
     components:{
       "v-header":Header
     },
     created(){
-      this.getList();
-      this.getbookList();
+      this.getList( this.$route.params.id );
+      this.getbookList(  );
+      this.getAllBook();
     },
-    coumted(){
-
+    mounted(){
     },
     methods:{
-      getList(){
+        //获取书详情
+      getList( id ){
 //        http://39.108.14.248:3333/booklist?id=2
-        axios.get( `${this.common.api}/booklist?id=${this.$route.query.id}` ).then( res => {
+        axios.get( `${this.common.api}/booklist?id=${id}` ).then( res => {
           if( res.status == 200 ){
             this.details=res.data;
 //            console.log( this.details )
@@ -77,13 +94,25 @@
           }
         })
       },
+      //获取所有书籍;
       getbookList:function(){
         axios.get(`${this.common.api}/booklist`).then( res => {
           if( res.status == 200 ){
             this.bookList=res.data;
-            console.log( this.bookList );
+//            console.log( this.bookList );
           }
         })
+      },
+//      加入书架, 加入本地localstorage;
+      addBookrack(){
+          if(  getVal( this.details.id )== "1"  ){
+              alert("该书已经被加入书架");
+          }
+            setVal(this.details.id, 1);
+            this.badge=getAllBookNum();
+      },
+      getAllBook(){
+        this.badge=getAllBookNum();
       }
     },
     filters:{
@@ -94,6 +123,13 @@
           store.state.authorStatus=true;
             return "大神";
         }
+      }
+    },
+    watch: {
+      //监听路由，点击底部喜欢的书籍路由会改变，重新获取数据
+      $route(to , from) {
+          //调用获取数据;
+        this.getList(to.params.id)
       }
     }
   }
@@ -183,5 +219,18 @@
     left:0;
     width:100%;
       height:100%;
+  }
+
+  .badge{
+    position: absolute;
+    right:5px;
+    top:5px;
+    width: 30px;
+    height: 30px;
+    background:rgba(150, 0 , 0, .5);
+    border-radius: 50%;
+    color:#fff;
+    text-align: center;
+    line-height: 30px;
   }
 </style>

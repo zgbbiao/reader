@@ -9,6 +9,9 @@ import axios from 'axios'
 //引入第三方模块;
 import mint from "mint-ui";
 import 'mint-ui/lib/style.css'    //引入 mint-ui 的样式
+import $ from "@/lib/jquery-2.2.2.min.js"
+import "@/lib/jquery.fly.min.js"
+import "@/lib/requestAnimationFrame.js"
 
 import './lib/mui/css/mui.css';
 import './lib/mui/css/icons-extra.css';
