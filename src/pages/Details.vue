@@ -12,7 +12,7 @@
       </div>
     <div class="btn-box">
       <button type="button" class="mui-btn mui-btn-danger ">
-        <router-link class="to-reading" :to="{path:'reading',query: {book: details.id , id:1 }, params:{ id: 1 } } "></router-link>立刻阅读
+        <router-link class="to-reading" :to="{path:'reading',query: {book: details.id , id:1 }} "></router-link>立刻阅读
       </button>
       <button type="button" class="mui-btn">加入书架</button>
     </div>
@@ -22,7 +22,7 @@
     <div class="other">
       <p> 书友还看过 </p>
       <div class="bottom">
-        <router-link v-for=" ( ite, index ) in bookList " :to="{path:'details', query:{id:ite.id}, params:{ id:ite.id } }">
+        <router-link v-for=" ( ite, index ) in bookList " :to="{path:'details', query:{id:ite.id} }">
           <img v-bind:src="ite.images" :alt="ite.images">
           <p class="fs-bold">{{ite.name}}</p>
           <p>{{ite.author}}</p>

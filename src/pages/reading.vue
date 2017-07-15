@@ -6,10 +6,10 @@
     <div class="content" v-html="bookList.content">
     </div>
     <div class="reading-bottom">
-      <router-link  :to="{ path: 'reading', query: {book: this.$route.query.book , id:subtractId }, params:{  id: subtractId } }">
+      <router-link  :to="{ path: 'reading', query: {book: this.$route.query.book , id:subtractId }}">
         上一页
       </router-link>
-      <router-link  :to="{ path: 'reading', query: {book: this.$route.query.book , id:addId } ,params:{  id: addId } }">
+      <router-link  :to="{ path: 'reading', query: {book: this.$route.query.book , id:addId }  }">
         下一页
       </router-link>
     </div>
@@ -36,7 +36,7 @@
     },
       methods:{
         getbookList:function(){
-          axios.get(`${this.common.api}/book?book=${this.$route.query.book}&id=${this.$route.query.id}#/${this.$route.query.id}`).then( res => {
+          axios.get(`${this.common.api}/book?book=${this.$route.query.book}&id=${this.$route.query.id}`).then( res => {
             if( res.status == 200 ){
               this.bookList=res.data;
 //              console.log( this.bookList )

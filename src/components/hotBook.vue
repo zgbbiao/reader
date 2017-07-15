@@ -6,7 +6,7 @@
         <h2> {{item.title}} <!-- <slot name="titleTwo"></slot> --> </h2>
       </div>
       <div class="bottom">
-        <router-link v-for=" ( ite, index ) in item.list " :to="{path:'details', query:{id:ite.id} , params:{ id:ite.id } }">
+        <router-link v-for=" ( ite, index ) in item.list " :to="{path:'details', query:{id:ite.id}  }">
           <img v-bind:src="ite.images" :alt="ite.images">
           <p class="fs-bold">{{ite.name}}</p>
           <p>{{item.author}}</p>
