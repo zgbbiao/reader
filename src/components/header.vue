@@ -3,7 +3,7 @@
     <router-link to="/" slot="left">
       <mt-button icon="back" @click="back">{{ headerObj.back }}</mt-button>
       <span class="right" @click="login"  >
-        <router-link  @click="onPopup" v-show="isCookie" :to="{path: 'reader' }" class="mui-icon mui-icon-person"> </router-link>
+        <router-link  @click="onPopup" v-show="isCookie" :to="{name: 'Reader' }" class="mui-icon mui-icon-person"> </router-link>
         <a  @click="onPopup" class="mui-icon mui-icon-person noCookie" v-show="!isCookie" > </a>
       </span>
     </router-link>

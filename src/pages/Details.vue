@@ -45,10 +45,6 @@
   import axios from 'axios'
   import Header from "@/components/header.vue"
   import { setVal, getAllBookNum, getVal } from "@/components/getBook.js"
-  import $ from "@/lib/jquery-2.2.2.min.js"
-  import "@/lib/jquery.fly.min.js"
-  import "@/lib/requestAnimationFrame.js"
-
   //使用store 共享数据;
   var store = {
     debug: true,
@@ -195,7 +191,7 @@
   .bottom a{
     flex:1;
     padding:25px;
-    min-width:20%;
+    min-width:150px;
   }
   .bottom a img{
     width:100%;

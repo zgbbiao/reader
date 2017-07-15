@@ -33,7 +33,6 @@
           </div>
           <div class="mui-button-row">
             <button type="button" class="mui-btn mui-btn-primary " @click="userLogin" >确认</button>
-            <button type="button" class="mui-btn mui-btn-danger " >取消</button>
           </div>
         </form>
       </mt-popup>
@@ -123,7 +122,6 @@
         this.popupVisible=false;
         this.toChildCookie=true;
       }
-
     },
     components:{
       "v-header":header,
