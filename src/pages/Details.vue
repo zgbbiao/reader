@@ -14,11 +14,21 @@
         </div>
       </div>
     <div class="btn-box">
-      <button type="button" class="mui-btn mui-btn-danger ">
+      <!--<button type="button" class="mui-btn mui-btn-danger ">-->
         <!--:to="{ name: 'Reading', params: { id: ite.id }}-->
-        <router-link class="to-reading" :to="{name:'Reading', params: {book: details.id , id:1 }} "></router-link>立刻阅读
-      </button>
-      <button type="button" class="mui-btn addBookrack" @click="addBookrack">加入书架</button>
+        <router-link class="to-reading" :to="{name:'Reading', params: {book: details.id , id:1 }} " size="large">
+          <Button type="primary" shape="circle" size="large" class="mui-btn">立刻阅读
+          </Button>
+
+        </router-link>
+      <!--</button>-->
+      <a >
+        <Button type="primary" shape="circle" size="large" class="addBookrack mui-btn" @click="addBookrack">  加入书架    </Button>
+      </a>
+
+
+
+      <!--<button type="button" class="mui-btn addBookrack" @click="addBookrack">加入书架</button>-->
     </div>
     <div class="intro">
       {{ details.intro }}
@@ -159,14 +169,26 @@
     padding:20px;
     border-bottom:1px solid #8f8f94;
   }
-  .mui-btn{
-    padding:20px;
+  .btn-box>a {
+    /*padding: 20px;*/
     flex: 1;
-    margin:0px 20px;
+    margin: 0px 20px;
     font-size: 30px;
     box-sizing: border-box;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
+    height:60px;
   }
+  .btn-box>a .mui-btn {
+    width:100%;
+    height:100%;
+    font-size: 30px;
+  }
+
+  /*.mui-btn a, .mui-btn span{*/
+    /*display: block;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+  /*}*/
   .intro{
     font-size: 30px;
     line-height: 45px;

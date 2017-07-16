@@ -3,8 +3,8 @@
     <router-link to="/" slot="left">
       <mt-button icon="back" @click="back">{{ headerObj.back }}</mt-button>
       <span class="right" @click="login"  >
-        <router-link  @click="onPopup" v-show="isCookie" :to="{name: 'Reader' }" class="mui-icon mui-icon-person"> </router-link>
-        <a  @click="onPopup" class="mui-icon mui-icon-person noCookie" v-show="!isCookie" > </a>
+        <router-link  @click="onPopup" v-show="isCookie" :to="{name: 'Reader' }" class="mui-icon mui-icon-person"><Icon type="person"></Icon> </router-link>
+        <a  @click="onPopup" class="mui-icon mui-icon-person noCookie" v-show="!isCookie" > <Icon type="person"></Icon></a>
       </span>
     </router-link>
   </mt-header>
@@ -81,4 +81,10 @@
     padding-left:40px;
     color:#fff;
   }
+
+  /*.right i{*/
+    /*display: inline-block;*/
+    /*width:100%;*/
+    /*height:100%;*/
+  /*}*/
 </style>

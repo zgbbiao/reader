@@ -22,19 +22,10 @@
     <div class="PopupLogin" >
       <mt-popup
         v-model="popupVisible">
-        <form class="mui-input-group">
-          <div class="mui-input-row">
-            <label>用户名</label>
-            <input type="text" class="mui-input-clear userName" placeholder="请输入用户名">
-          </div>
-          <div class="mui-input-row">
-            <label>密码</label>
-            <input type="password" class="mui-input-password userpassword" placeholder="请输入密码">
-          </div>
-          <div class="mui-button-row">
-            <button type="button" class="mui-btn mui-btn-primary " @click="userLogin" >确认</button>
-          </div>
-        </form>
+        <mt-field label="用户名" placeholder="请输入用户名" ></mt-field>
+        <mt-field label="密码" placeholder="请输入密码" type="password" ></mt-field>
+        <!--<mt-button type="danger" @click="userLogin" class="">确认</mt-button>-->
+        <Button type="error" shape="circle" long size="large"  @click="userLogin" >确认登录</Button>
       </mt-popup>
     </div>
   </div>
@@ -113,14 +104,18 @@
       },
       //点击用户输入登录;
       userLogin(){
-        var userName=document.querySelector(".userName").value;
-        var userpwd=document.querySelector(".userpassword").value;
-        console.log(userName+"="+userpwd  )
+        var userName=document.querySelector(".mint-field-core").value;
+        var userpwd=document.querySelector(".mint-field-core").value;
+//        console.log(userName+"="+userpwd  )
         Cookie.set( "myBook", userName+"="+userpwd );
-        console.log( Cookie.get( "myBook" ) )
-        this.isCookie=true;
-        this.popupVisible=false;
-        this.toChildCookie=true;
+//        console.log( Cookie.get( "myBook" ) )
+        if( userName && userpwd ){
+          this.isCookie=true;
+          this.popupVisible=false;
+          this.toChildCookie=true;
+          this.$router.push({ path: 'reader' })
+        }
+
       }
     },
     components:{

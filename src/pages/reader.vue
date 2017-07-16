@@ -7,7 +7,7 @@
           <div class="right">
             <h3>{{item.name}}</h3>
             <p> {{item.intro}} </p>
-            <span class="mui-icon mui-icon-contact posint-bottom"> {{item.author}} </span>
+            <span class=" posint-bottom"> <Icon type="person"></Icon>{{item.author}} </span>
           </div>
         </router-link>
   </div>

@@ -10,14 +10,16 @@ import axios from 'axios'
 import mint from "mint-ui";
 import 'mint-ui/lib/style.css'    //引入 mint-ui 的样式
 
-
-import './lib/mui/css/mui.css';
-import './lib/mui/css/icons-extra.css';
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+// import './lib/mui/css/mui.css';
+// import './lib/mui/css/icons-extra.css';
 
 import Common from "@/components/utils.js";
 
 Vue.use( mint );
 Vue.use( Common  )
+Vue.use(iView);
 
 Vue.config.productionTip = false
 
