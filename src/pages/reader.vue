@@ -41,7 +41,8 @@
     methods:{
       getList( id ){
 //        http://39.108.14.248:3333/booklist?id=2
-        axios.get( `${this.common.api}/booklist?id=${id}` ).then( res => {
+        axios.get( `${this.common.api}/booklist?id=${id}`
+		).then( res => {
           if( res.status == 200 ){
             this.details.push( res.data );
           }

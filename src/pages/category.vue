@@ -131,13 +131,13 @@
     flex:1;
     text-align: center;
     color:grey;
-    font-size: 25px;
+    font-size: 16px;
   }
   .search-filter a:hover,
   .search-filter a:active{
-    padding-top:10px;
-    border-radius: 10px;
-    border:1px solid red;
+    padding-top:1px;
+    /*border-radius: 10px;*/
+    border-bottom:1px solid red;
     color:red;
   }
   .categoryInfo{

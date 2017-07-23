@@ -36,7 +36,8 @@
     },
       methods:{
         getbookList:function( id ){
-          axios.get(`${this.common.api}/book?book=${this.$route.params.book}&id=${id}`).then( res => {
+          axios.get(`${this.common.api}/book?book=${this.$route.params.book}&id=${id}`
+		  ).then( res => {
             if( res.status == 200 ){
               this.bookList=res.data;
 //              console.log( this.bookList )
@@ -112,8 +113,8 @@
       width:40%;
       padding:20px;
       box-sizing: border-box;
-      line-height: 40px;
-      font-size: 40px;
+      line-height: 18px;
+      font-size: 16px;
       background:#DEB887;
       border-radius: 30px;
       margin-right:30px;

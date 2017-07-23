@@ -3,7 +3,7 @@
     <v-header :headerObj="headerObj" @onPopup="onCookie" :toChildCookie="toChildCookie">
     </v-header>
     <swipe></swipe>
-    <search></search>
+    <!--<search></search>-->
     <div class="book-nav-box">
       <router-link
         class="guide-nav-div"
@@ -33,7 +33,7 @@
 <script>
   import header from "@/components/header.vue"
   import Swipe from "@/components/swipe.vue"
-  import Search from "@/components/search.vue"
+//  import Search from "@/components/search.vue"
   import hotBook from "@/components/hotBook.vue"
   import axios from 'axios'
   import Cookie from "@/components/myCookie.js";
@@ -85,7 +85,8 @@
           window.localhost.history.back()
       },
       getbookList:function(){
-        axios.get(`${this.common.api}/booklist`).then( res => {
+        axios.get(`${this.common.api}/booklist`
+		).then( res => {
           if( res.status == 200 ){
               this.bookList=res.data;
               this.allList= [
@@ -108,6 +109,7 @@
         var userpwd=document.querySelector(".mint-field-core").value;
 //        console.log(userName+"="+userpwd  )
         Cookie.set( "myBook", userName+"="+userpwd );
+        sessionStorage.setItem("myBookKey", userName+"="+userpwd );
 //        console.log( Cookie.get( "myBook" ) )
         if( userName && userpwd ){
           this.isCookie=true;
@@ -121,7 +123,7 @@
     components:{
       "v-header":header,
       Swipe,
-      Search,
+//      Search,
       hotBook
     },
     watch:{
@@ -187,6 +189,14 @@
     height:160px;
   }
 
+  .mint-popup{
+    width:100%;
+  }
+
+  .guide-nav-h{
+    display: block;
+    font-size: 16px;
+  }
 
 
 
