@@ -3,8 +3,8 @@
     <router-link to="/" slot="left">
       <mt-button icon="back" @click="back">{{ headerObj.back }}</mt-button>
       <span class="right" @click="login"  >
-        <router-link  @click="onPopup" v-show="isCookie" :to="{name: 'Reader' }" class="mui-icon mui-icon-person"><Icon type="person"></Icon> </router-link>
-        <a  @click="onPopup" class="mui-icon mui-icon-person noCookie" v-show="!isCookie" > <Icon type="person"></Icon></a>
+        <router-link  @click="onPopup" v-show="isCookie" :to="{name: 'Reader' }" class="mui-icon mui-icon-person"> </router-link>
+        <a  @click="onPopup" class="mui-icon mui-icon-person noCookie" v-show="!isCookie" > </a>
       </span>
     </router-link>
   </mt-header>
@@ -33,7 +33,8 @@
         //判断是否存在cookie;
         login(){
           var bookCookie = Cookie.get( "myBook" );
-          if( bookCookie ){
+          var bookSession = sessionStorage.getItem("myBookKey");
+          if( bookCookie || bookSession ){
               this.isCookie=true;
           }else{
             this.isCookie=false;
@@ -80,6 +81,11 @@
     padding:20px;
     padding-left:40px;
     color:#fff;
+    background:url("../assets/img/man.png") no-repeat;
+    background-size:60% 100%;
+    -webkit-background-clip: border-box;
+    -moz-background-clip: border-box;
+    background-clip: border-box;
   }
 
   /*.right i{*/

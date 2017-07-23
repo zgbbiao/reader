@@ -12,7 +12,7 @@ export default {
   },
   // 设置
   set : function(name,value,expires){
-    expires= expires || 1;
+    expires= expires || 7;
     var expDays = expires*24*60*60*1000;
     var expDate = new Date();
     expDate.setTime(expDate.getTime()+expDays);

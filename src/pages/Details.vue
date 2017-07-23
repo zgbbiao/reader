@@ -92,7 +92,8 @@
         //获取书详情
       getList( id ){
 //        http://39.108.14.248:3333/booklist?id=2
-        axios.get( `${this.common.api}/booklist?id=${id}` ).then( res => {
+        axios.get( `${this.common.api}/booklist?id=${id}`
+		).then( res => {
           if( res.status == 200 ){
             this.details=res.data;
 //            console.log( this.details )
@@ -165,15 +166,16 @@
     color: #fff;
   }
   .btn-box{
-    display: flex;
+    display: block;
     padding:20px;
     border-bottom:1px solid #8f8f94;
   }
   .btn-box>a {
     /*padding: 20px;*/
-    flex: 1;
-    margin: 0px 20px;
-    font-size: 30px;
+    width:45%;
+    display: inline-block;
+    /*margin: 0px 20px;*/
+    font-size: 22px;
     box-sizing: border-box;
     /*border-radius: 20px;*/
     height:60px;
@@ -181,7 +183,7 @@
   .btn-box>a .mui-btn {
     width:100%;
     height:100%;
-    font-size: 30px;
+    font-size: 22px;
   }
 
   /*.mui-btn a, .mui-btn span{*/
@@ -251,4 +253,6 @@
     text-align: center;
     line-height: 30px;
   }
+
+
 </style>
